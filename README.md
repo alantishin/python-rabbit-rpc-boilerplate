@@ -1,0 +1,1 @@
+# python-rabbit-rpc-boilerplate
