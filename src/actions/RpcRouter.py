@@ -1,5 +1,5 @@
 """
-List RPC methods
+Dict RPC methods
 """
 def getActionsMap():
     return {}
