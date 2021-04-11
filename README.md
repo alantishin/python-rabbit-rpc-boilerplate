@@ -21,7 +21,7 @@ Then add new handler to ./src/actions/RpcRouter.py
         return {
             "SayHello": SayHello
         }
-After that you can send RPC request to RPC_QUEUE_NAME througth RabbbitMQ.
+After that you can send RPC request to RPC_QUEUE_NAME througth RabbbitMQ:
     
     {
         "jsonrpc": "2.0", 
@@ -30,7 +30,7 @@ After that you can send RPC request to RPC_QUEUE_NAME througth RabbbitMQ.
             "name": "World"
         }
     }
-Response will be
+Response will be:
     
     {
         "jsonrpc": "2.0", 
