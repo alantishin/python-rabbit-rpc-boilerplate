@@ -11,6 +11,9 @@ def on_rpc_channel_open(channel):
 	channel.basic_consume(on_message_callback=rpc_callback, queue=queueName)
 
 def rpc_callback(ch, method, props, body):
+
+	ch.basic_ack(delivery_tag=method.delivery_tag)
+
 	request = json.loads(body)
 	actionHandler = getAction(request['method'])
 
@@ -24,8 +27,7 @@ def rpc_callback(ch, method, props, body):
 		rpcError = generate_error_from_exception(e)
 		_sendResponse(ch, props, rpcError)
 		traceback.print_exc()
-	finally:
-		ch.basic_ack(delivery_tag=method.delivery_tag)
+		
 
 def _sendResponse(ch, props, body):
 	ch.basic_publish(

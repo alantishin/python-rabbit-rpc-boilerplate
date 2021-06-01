@@ -2,10 +2,14 @@ import os
 import pika
 import logging
 from src.actions.RpcChannel import on_rpc_channel_open
+from src.actions.SimpleQueue import on_channel_open
 
 def on_connection_open(connection):
+	# RPC channel
 	connection.channel(on_open_callback=on_rpc_channel_open)
 
+	# simple channel
+	connection.channel(on_open_callback=on_channel_open)
 
 def main():
 	username=os.environ.get('QUEUE_USERNAME')
@@ -31,4 +35,6 @@ def main():
 
 if __name__ == "__main__":
 	logging.basicConfig(level=logging.ERROR)
+
+	print('started')
 	main()
